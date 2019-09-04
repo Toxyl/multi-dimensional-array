@@ -9,8 +9,9 @@ class MultiDimensionalArray
 		public $r; 		// row
 		public $cell; 	// cell index
 		public $iv; 	// initial value
+		public $shift_mode = false;
 
-		public function __construct($cols, $rows, $values_per_cell, $initial_value = null)
+		public function __construct($cols, $rows = 1, $values_per_cell = 1, $initial_value = null)
 		{
 			$this->d = array_fill(0, $rows * ($cols * $values_per_cell), $initial_value);
 			$this->c = 0;
@@ -61,7 +62,7 @@ class MultiDimensionalArray
 			$this->cell2index();
 		}
 
-		public function get($c, $r, $n_items)
+		public function get($c, $r, $n_items = 1)
 		{
 			$this->c = $c;
 			$this->r = $r;
@@ -80,6 +81,53 @@ class MultiDimensionalArray
 		public function get_row($r)
 		{
 			return $this->get(0, $r, $this->cs);
+		}
+
+		public function shift_mode_disable()
+		{
+			if ($this->shift_mode)
+			{
+				$this->shift_mode = false;
+				$this->d = array_reverse($this->d);
+			}
+		}
+
+		public function shift_mode_enable()
+		{
+			if (!$this->shift_mode)
+			{
+				$this->shift_mode = true;
+				$this->d = array_reverse($this->d);
+			}
+		}
+
+		public function shift()
+		{
+			return $this->shift_mode ? array_pop($this->d) : array_shift($this->d);
+		}
+
+		public function push(... $vals)
+		{
+			$n = count($vals);
+			if ($n == 1)
+			{
+				$this->d[] = $vals[0];
+
+			}
+			else
+			{
+				$vals = array_reverse($vals);
+				while ($n > 0)
+				{
+					$this->d[] = array_pop($vals);
+					$n--;
+				}				
+			}
+		}
+
+		public function pop()
+		{
+			return array_pop($this->d);
 		}
 
 		public function get_mapping_character($val)
