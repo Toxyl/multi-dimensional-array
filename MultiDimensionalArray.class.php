@@ -13,7 +13,6 @@ class MultiDimensionalArray
 		public function __construct($cols, $rows, $values_per_cell, $initial_value = null)
 		{
 			$this->d = array_fill(0, $rows * ($cols * $values_per_cell), $initial_value);
-			echo "Created " . count($this->d) . " empty cells.\n";
 			$this->c = 0;
 			$this->r = 0;
 			$this->cell = 0;
