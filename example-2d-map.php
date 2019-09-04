@@ -1,6 +1,6 @@
 <?php
 	require_once('MultiDimensionalArray.class.php');
-	
+
 	$i = 0;
 	$l = 11;
 	$a = new MultiDimensionalArray($l, $l, 3);

@@ -77,6 +77,11 @@ class MultiDimensionalArray
 			return count($out) == 1 ? $out[0] : $out;
 		}
 
+		public function get_row($r)
+		{
+			return $this->get(0, $r, $this->cs);
+		}
+
 		public function get_mapping_character($val)
 		{
 			return $val === $this->iv ? '□ ' : '■ ';
