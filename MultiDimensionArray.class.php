@@ -64,8 +64,8 @@ class MultiDimensionalArray
 
 		public function get($c, $r, $n_items)
 		{
-            $this->c = $c;
-            $this->r = $r;
+			$this->c = $c;
+			$this->r = $r;
 			$this->index2cell();
 			$out = [];
 			$i = 0;
@@ -75,7 +75,7 @@ class MultiDimensionalArray
 				$this->cell += $this->vpc;
 				$i++;
 			}
-            return count($out) == 1 ? $out[0] : $out;
+			return count($out) == 1 ? $out[0] : $out;
 		}
 
 		public function get_mapping_character($val)
