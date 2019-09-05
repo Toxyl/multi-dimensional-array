@@ -101,28 +101,17 @@ class MultiDimensionalArray
 			}
 		}
 
+		/**
+		 * Enable shift mode before using this!
+		 */
 		public function shift()
 		{
 			return $this->shift_mode ? array_pop($this->d) : array_shift($this->d);
 		}
 
-		public function push(... $vals)
+		public function push($val)
 		{
-			$n = count($vals);
-			if ($n == 1)
-			{
-				$this->d[] = $vals[0];
-
-			}
-			else
-			{
-				$vals = array_reverse($vals);
-				while ($n > 0)
-				{
-					$this->d[] = array_pop($vals);
-					$n--;
-				}				
-			}
+			$this->d[] = $val;
 		}
 
 		public function pop()
